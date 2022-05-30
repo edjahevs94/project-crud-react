@@ -25,7 +25,7 @@ export default function Create() {
         Axios.post("projects",{
             name: projectBody.name,
             priority: projectBody.priority,
-            description: "bla"
+            description: projectBody.description
         }).then(res=>{
             console.log(res.data)
         } )
@@ -51,7 +51,7 @@ export default function Create() {
             <div className="card-body">
                 <form onSubmit={sendProject}>
                     <div className="form-group">
-                        <label htmlFor="">Project Name</label>
+                        <label htmlFor="">Name</label>
                         <input 
                             type="text" 
                             name="name" 
@@ -63,8 +63,8 @@ export default function Create() {
                         <small id="helpId" className="text-muted">Whrite project name here</small>
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="">Project Priority</label>
+                    <div className="form-group mt-2">
+                        <label htmlFor="">Priority</label>
                         <input 
                             type="text" 
                             name="priority" 
@@ -75,7 +75,19 @@ export default function Create() {
                         
                         <small id="helpId" className="text-muted">Whrite project priority here</small>
                     </div>
-                    <div className="mt-3">
+                    <div className="form-group mt-2">
+                        <label htmlFor="">Description</label>
+                        <textarea 
+                            type="text" 
+                            name="description" 
+                            onChange={handleChange} 
+                            value={projectBody.description} 
+                            className="form-control" 
+                            placeholder="Project description..." />
+                        
+                        <small id="helpId" className="text-muted">Whrite project description here</small>
+                    </div>
+                    <div className="mt-4">
                         <button type="submit" className="btn btn-success">Add new project</button>
                         <Link to={"/"} className="btn btn-primary ms-2">Cancel</Link>
                     </div>

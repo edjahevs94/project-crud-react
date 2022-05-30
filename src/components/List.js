@@ -4,15 +4,23 @@ import {Link} from "react-router-dom"
 
     const [allProjects, setAllProjects] = React.useState([])
 
-    
+    const deleteProject = async (id) => {
+        console.log(id)
+        const res = await fetch(`projects/${id}`, {method: "DELETE"})
+        //const data = await res.json()
+        //recargar nuevamente la tabla
+        getProjects()
+        console.log(res)
+    }
+    async function getProjects(){
+        const res = await fetch("projects")
+        const data = await res.json()
+        console.log(data)
+        setAllProjects(data)
+    }
 
     React.useEffect(() => {
-        async function getProjects(){
-            const res = await fetch("projects")
-            const data = await res.json()
-            console.log(data)
-            setAllProjects(data)
-        }
+        
         getProjects()
     }, [])
     
@@ -29,6 +37,7 @@ import {Link} from "react-router-dom"
                             <th>Id</th>
                             <th>Name</th>
                             <th>Priority</th>
+                            <th>Description</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -40,9 +49,10 @@ import {Link} from "react-router-dom"
                             <td>{project.id}</td>
                             <td>{project.name}</td>
                             <td>{project.priority}</td>
+                            <td>{project.description}</td>
                             <td>
                                 <Link className="btn btn-warning me-2" to={"/edit"}>Edit</Link>
-                                <button type="button" className="btn btn-danger">Delete</button> 
+                                <button type="button" className="btn btn-danger" onClick={()=>deleteProject(project.id)}>Delete</button> 
                             </td>
                         </tr>
                         ) 
