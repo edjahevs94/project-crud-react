@@ -27,7 +27,7 @@ const Edit = ()=>{
         }*/
         
         const getProject = async ()=>{
-            Axios.get(`projects/${id}`)
+            Axios.get(`https://task-node-api-rest.herokuapp.com/projects/${id}`)
             .then(res=>{
                 console.log(res.data)
                 setLoadingData(true)
@@ -55,7 +55,7 @@ const Edit = ()=>{
         }
         const sendProject = (event)=>{
             event.preventDefault();
-            Axios.put(`projects/${projectBody.id}`,{
+            Axios.put(`https://task-node-api-rest.herokuapp.com/projects/${projectBody.id}`,{
                 name : projectBody.name,
                 priority : projectBody.priority,
                 description : projectBody.description

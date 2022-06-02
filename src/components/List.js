@@ -8,14 +8,14 @@ import {Link} from "react-router-dom"
 
     const deleteProject = async (id) => {
         console.log(id)
-        const res = await fetch(`projects/${id}`, {method: "DELETE"})
+        const res = await fetch(`https://task-node-api-rest.herokuapp.com/projects/${id}`, {method: "DELETE"})
         //const data = await res.json()
         //recargar nuevamente la tabla
         getProjects()
         console.log(res)
     }
     async function getProjects(){
-        const res = await fetch("projects")
+        const res = await fetch("https://task-node-api-rest.herokuapp.com/projects")
         //console.log(res)
         const data = await res.json()
         console.log(data)
