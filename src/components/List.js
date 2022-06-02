@@ -4,6 +4,8 @@ import {Link} from "react-router-dom"
 
     const [allProjects, setAllProjects] = React.useState([])
 
+    const [loadingData, setLoadingData] = React.useState(false)
+
     const deleteProject = async (id) => {
         console.log(id)
         const res = await fetch(`projects/${id}`, {method: "DELETE"})
@@ -14,8 +16,10 @@ import {Link} from "react-router-dom"
     }
     async function getProjects(){
         const res = await fetch("projects")
+        //console.log(res)
         const data = await res.json()
         console.log(data)
+        setLoadingData(true)
         setAllProjects(data)
     }
 
@@ -29,8 +33,14 @@ import {Link} from "react-router-dom"
             <div className="card-header">
                 <Link className="btn btn-success me-2" to={"/create"}>Add new project</Link>
             </div>
+            
             <div className="card-body">
                 <h4> Project List</h4>
+                {!loadingData ? 
+                            <div className="d-flex align-items-center mt-3">
+                                <strong>Loading...</strong>
+                                <div className="spinner-border ml-auto ms-3" role="status" aria-hidden="true"></div>
+                            </div> :
                 <table className="table">
                     <thead>
                         <tr>
@@ -41,8 +51,10 @@ import {Link} from "react-router-dom"
                             <th>Actions</th>
                         </tr>
                     </thead>
+                    
                     <tbody>
-                        {allProjects.map((project) => (
+                          
+                       {allProjects.map((project) => (
 
                         
                         <tr key={project.id}>
@@ -51,16 +63,16 @@ import {Link} from "react-router-dom"
                             <td>{project.priority}</td>
                             <td>{project.description}</td>
                             <td>
-                                <Link className="btn btn-warning me-2" to={"/edit"}>Edit</Link>
+                                <Link className="btn btn-warning me-2" to={"/"+project.id}>Edit</Link>
                                 <button type="button" className="btn btn-danger" onClick={()=>deleteProject(project.id)}>Delete</button> 
                             </td>
                         </tr>
                         ) 
                         )}
                     </tbody>
-
+                    
                 </table>
-            </div>
+                 } </div> 
             <div className="card-footer text-muted">
 
             </div>

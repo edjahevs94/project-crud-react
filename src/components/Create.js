@@ -27,8 +27,9 @@ export default function Create() {
             priority: projectBody.priority,
             description: projectBody.description
         }).then(res=>{
-            console.log(res.data)
-        } )
+            
+            console.log(res.data);
+        } ).catch(console.log)
             
     }
 
