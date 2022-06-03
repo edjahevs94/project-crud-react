@@ -22,7 +22,7 @@ export default function Create() {
         }).catch(console.log)*/
         //los post funcionan solo con axios ya que el fetch nativo 
         //esta bug e inserta valores nulos en el body
-        Axios.post("projects",{
+        Axios.post("https://task-node-api-rest.herokuapp.com/projects",{
             name: projectBody.name,
             priority: projectBody.priority,
             description: projectBody.description
