@@ -70,6 +70,10 @@ const Edit = ()=>{
             </div>
            
             <div className="card-body">
+                {!loadingData ? <div className="d-flex align-items-center mt-3">
+                                <strong>Loading...</strong>
+                                <div className="spinner-border ml-auto ms-3" role="status" aria-hidden="true"></div>
+                            </div> : 
                 <form onSubmit={sendProject}>
                     <div className="form-group">
                        <div> {projectBody.id} </div>
@@ -113,7 +117,7 @@ const Edit = ()=>{
                         <button type="submit" className="btn btn-success">Save changes</button>
                         <Link to={"/"} className="btn btn-primary ms-2">Cancel</Link>
                     </div>
-                </form>
+                </form> }
             </div>
             <div className="card-footer text-muted"></div>
         </div>
