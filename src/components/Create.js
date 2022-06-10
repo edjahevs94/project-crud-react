@@ -1,9 +1,10 @@
 import React from "react"
 import {Link} from "react-router-dom"
 import Axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export default function Create() {
-
+    const navigate = useNavigate()
     const [projectBody, setProjectBody] = React.useState({
         name: "",
         priority: "",
@@ -29,6 +30,7 @@ export default function Create() {
         }).then(res=>{
             
             console.log(res.data);
+            navigate("/")
         } ).catch(console.log)
             
     }
