@@ -59,7 +59,7 @@ const Edit = ()=>{
                 name : projectBody.name,
                 priority : projectBody.priority,
                 description : projectBody.description
-            }).catch(console.log)
+            }).then(res=>{console.log(res.data)}).catch(console.log)
             navigate("/")
         }
 

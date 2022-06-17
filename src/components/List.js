@@ -9,10 +9,11 @@ import {Link} from "react-router-dom"
     const deleteProject = async (id) => {
         console.log(id)
         const res = await fetch(`https://task-node-api-rest.herokuapp.com/projects/${id}`, {method: "DELETE"})
-        //const data = await res.json()
+        const data = await res.json()
         //recargar nuevamente la tabla
+        console.log(data)
         getProjects()
-        console.log(res)
+        
     }
     async function getProjects(){
         const res = await fetch("https://task-node-api-rest.herokuapp.com/projects")
